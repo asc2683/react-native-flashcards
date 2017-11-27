@@ -1,23 +1,43 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import { StackNavigator } from 'react-navigation'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-export default class App extends React.Component {
-  render() {
+import { reducer } from './reducers/index'
+import DeckList from './components/DeckList'
+
+let store = createStore(
+  reducer,
+  /* redux dev tool chrome */
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
+console.log('Initial State', store.getState())
+
+const unsubscribe = store.subscribe(() => {
+  console.log('state changed:', store.getState())
+})
+
+let headerOptions = {
+  headerStyle: { backgroundColor: '#111111' }
+}
+
+const Navigator = StackNavigator({
+  Home: {
+    screen: DeckList,
+    navigationOptions: headerOptions
+  }
+})
+
+class App extends Component {
+
+  render () {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
