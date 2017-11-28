@@ -1,10 +1,10 @@
-import mockDecks from '../data/mockDecks'
+import { MockDecks, MockQuestions } from '../data/Mocks'
 
 import DecksReducer from './decks'
 
 const initialState = () => {
   return {
-    decks: mockDecks
+    decks: MockDecks
   }
 }
 

@@ -8,6 +8,8 @@ import Button from './Button'
 class DeckList extends Component {
   static displayName = 'Deck List'
 
+  static navigationOptions = { title: 'Quiz Decks'}
+
   render () {
     return (
       <View>

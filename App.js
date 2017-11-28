@@ -6,11 +6,20 @@ import { Provider } from 'react-redux'
 import { reducer } from './reducers/index'
 import DeckList from './components/DeckList'
 
+import { readDecks } from './storage/decks'
+import { loadData } from './actions'
+
 let store = createStore(
   reducer,
-  /* redux dev tool chrome */
+  /* 
+  redux dev tool chrome 
+  */
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
+
+readDecks().then(decks => {
+  store.dispatch(loadData(decks))
+})
 
 console.log('Initial State', store.getState())
 
