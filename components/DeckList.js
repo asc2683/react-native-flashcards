@@ -14,7 +14,15 @@ class DeckList extends Component {
 
   _createDeck = name => {
     let createDeckAction = addDeck(name)
+
     this.props.createDeck(createDeckAction)
+    this.props.navigation.navigate('QuestionCreation', {
+      deckID: createDeckAction.data.id
+    })
+  }
+
+  _addQuestions = deckID => {
+    this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
   }
 
   _makeDeckViews () {

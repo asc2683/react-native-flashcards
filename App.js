@@ -9,6 +9,8 @@ import DeckList from './components/DeckList'
 import { readDecks } from './storage/decks'
 import { loadData } from './actions'
 
+import NewQuestion from './components/QuestionCreation'
+
 let store = createStore(
   reducer,
   /*
@@ -28,6 +30,11 @@ let headerOptions = {
 const Navigator = StackNavigator({
   Home: {
     screen: DeckList,
+    navigationOptions: headerOptions
+  },
+  QuestionCreation: {
+    screen: NewQuestion,
+    path: 'createQuestion/:deckID',
     navigationOptions: headerOptions
   }
 })
