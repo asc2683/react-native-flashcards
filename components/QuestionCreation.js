@@ -13,7 +13,7 @@ import LabeledInput from './LabeledInput'
 class NewQuestion extends Component {
   static navigationOpions = { title: 'Create Question' }
 
-  static initialState = { question: '', answer: ''}
+  static initialState = { question: '', answer: '' }
 
   constructor (props) {
     super (props)
@@ -47,7 +47,7 @@ class NewQuestion extends Component {
     this.props.navigation.navigate('Home')
   }
 
-  render() {
+  render () {
     return (
       <View>
         <LabeledInput

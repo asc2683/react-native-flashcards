@@ -34,7 +34,11 @@ class DeckList extends Component {
       return <DeckView
                deck={deck}
                count={this.props.counts[deck.id]}
-               key={deck.id} />
+               key={deck.id}
+               add={() => {
+                 this._addQuestions(deck.id)
+               }}
+               />
     })
   }
 

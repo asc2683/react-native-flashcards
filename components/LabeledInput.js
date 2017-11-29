@@ -5,7 +5,7 @@ import Input from './Input'
 import NormalText from './NormalText'
 
 class LabeledInput extends Component {
-  render() {
+  render () {
     return (
       <View style={styles.wrapper}>
         <NormalText style={styles.label}>

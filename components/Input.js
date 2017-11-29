@@ -54,7 +54,7 @@ Input.defaultProps = { clearOnSubmit: true }
 
 const styles = StyleSheet.create({
   nameField: { backgroundColor: colors.grey, height: 60 },
-  wideButton: { justifyContent: 'center', padding: 15, margin: 15 }
+  wideButton: { justifyContent: 'center', padding: 10, margin: 10 }
 })
 
 export default Input

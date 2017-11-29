@@ -4,12 +4,12 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import { reducer } from './reducers/index'
-import DeckList from './components/DeckList'
+import DeckListScreen from './components/DeckList'
 
 import { readDecks } from './storage/decks'
 import { loadData } from './actions'
 
-import NewQuestion from './components/QuestionCreation'
+import NewQuestionScreen from './components/QuestionCreation'
 
 let store = createStore(
   reducer,
@@ -29,11 +29,11 @@ let headerOptions = {
 
 const Navigator = StackNavigator({
   Home: {
-    screen: DeckList,
+    screen: DeckListScreen,
     navigationOptions: headerOptions
   },
   QuestionCreation: {
-    screen: NewQuestion,
+    screen: NewQuestionScreen,
     path: 'createQuestion/:deckID',
     navigationOptions: headerOptions
   }

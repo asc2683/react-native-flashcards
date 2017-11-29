@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
   wideButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
-    margin: 15,
+    padding: 10,
+    margin: 10,
     backgroundColor: colors.green
   }
 })
