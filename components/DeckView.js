@@ -9,6 +9,10 @@ import colors from '../styles/colors'
 class DeckView extends Component {
   static displayName = 'Deck'
 
+  _addQuestions = () => {
+    this.props.add()
+  }
+
   render () {
     return (
       <View style={styles.deckGroup}>

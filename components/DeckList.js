@@ -8,7 +8,7 @@ import DeckView from './DeckView'
 import DeckCreation from './DeckCreation'
 
 class DeckList extends Component {
-  static displayName = 'Deck List'
+  static displayName = 'DeckList'
 
   static navigationOptions = { title: 'Quiz Decks' }
 

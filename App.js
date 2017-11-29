@@ -4,18 +4,16 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import { reducer } from './reducers/index'
-import DeckListScreen from './components/DeckList'
-
 import { readDecks } from './storage/decks'
 import { loadData } from './actions'
 
-import NewQuestionScreen from './components/QuestionCreation'
+import DeckList from './components/DeckList'
+import QuestionCreation from './components/QuestionCreation'
 
 let store = createStore(
   reducer,
-  /*
-  redux dev tool chrome
-  */
+  
+  /* redux dev tool chrome */
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
@@ -24,16 +22,16 @@ readDecks().then(decks => {
 })
 
 let headerOptions = {
-  headerStyle: { backgroundColor: '#111111' }
+  headerStyle: { backgroundColor: '#FFFFFF' },
 }
 
 const Navigator = StackNavigator({
   Home: {
-    screen: DeckListScreen,
+    screen: DeckList,
     navigationOptions: headerOptions
   },
   QuestionCreation: {
-    screen: NewQuestionScreen,
+    screen: QuestionCreation,
     path: 'createQuestion/:deckID',
     navigationOptions: headerOptions
   }
