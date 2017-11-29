@@ -1,6 +1,8 @@
 import {
-  LOAD_DATA
+  LOAD_DATA, ADD_DECK
 } from '../actionTypes'
+
+import Deck from '../data/Deck'
 
 export const loadData = data => {
   return {
@@ -9,3 +11,9 @@ export const loadData = data => {
   }
 }
 
+export const addDeck = name => {
+  return {
+    type: ADD_DECK,
+    data: new Deck(name)
+  }
+}

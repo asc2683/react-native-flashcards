@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 
-import colors from './../styles/colors'
+import colors from '../styles/colors'
 
 class Button extends Component {
   static displayName = 'Button'

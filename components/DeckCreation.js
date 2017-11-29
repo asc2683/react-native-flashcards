@@ -1,15 +1,29 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+
+import { CreateDeckButton, EnterDeck } from './DeckCreationFields'
 
 class DeckCreation extends Component {
-  state = {  }
+  constructor (props) {
+    super (props)
+
+    this.state = { showingNameFields: false }
+  }
+
+  _newDeck = name => {
+    this.setState({ showingNameFields: false })
+    this.props.create(name)
+  }
+
+  _showField = () => {
+    this.setState({ showingNameFields: true })
+  }
 
   render () {
-    return (
-      <View>
-        <Text>Deck Creation</Text>
-      </View>
-    )
+    let contents = this.state.showingNameFields
+      ? <EnterDeck create={this._newDeck} />
+      : <CreateDeckButton onPress={this._showField} />
+    return contents
   }
 }
 
