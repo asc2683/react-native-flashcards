@@ -11,20 +11,14 @@ import { loadData } from './actions'
 
 let store = createStore(
   reducer,
-  /* 
-  redux dev tool chrome 
+  /*
+  redux dev tool chrome
   */
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 readDecks().then(decks => {
   store.dispatch(loadData(decks))
-})
-
-console.log('Initial State', store.getState())
-
-const unsubscribe = store.subscribe(() => {
-  console.log('state changed:', store.getState())
 })
 
 let headerOptions = {

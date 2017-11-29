@@ -7,7 +7,9 @@ class DeckView extends Component {
   render () {
     return (
       <View>
-        <Text>Individual Deck View</Text>
+        <Text>
+          {this.props.deck.name}: {this.props.count} Questions
+        </Text>
       </View>
     )
   }
