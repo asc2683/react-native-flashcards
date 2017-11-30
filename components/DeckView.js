@@ -1,60 +1,70 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
+import { connect } from 'react-redux'
 
-import DeckModel from '../data/Deck'
 import NormalText from './NormalText'
 import Button from './Button'
 import colors from '../styles/colors'
 
 class DeckView extends Component {
-  static displayName = 'Deck'
+  static displayName = 'DeckView'
 
-  _addQuestions = () => {
-    this.props.add()
+  _addQuestions = deckID => {
+    deckID = this.props.navigation.state.params.deckID
+    this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
   }
 
   render () {
-    return (
-      <View style={styles.deckGroup}>
-        <Button style={styles.deckButton}>
-          <NormalText>
-            {this.props.deck.name}: {this.props.count} Questions
-          </NormalText>
-        </Button>
+    const { deckName, deckID } = this.props.navigation.state.params
 
-        <Button style={styles.editButton} onPress={this._addQuestions}>
-          <NormalText>+</NormalText>
-        </Button>
+    return (
+      <View>
+        <View style={styles.container}>
+          <NormalText>{deckName}</NormalText>
+          <Text>{this.props.counts[deckID]} Questions</Text>
+        </View>
+
+        <View>
+          <Button style={styles.addQuestion} onPress={this._addQuestions}>
+            <NormalText>Add Question</NormalText>
+          </Button>
+
+          <Button style={styles.startQuiz} onPress={this.props.onPress}>
+            <NormalText>Start Quiz</NormalText>
+          </Button>
+
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  deckGroup: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    padding: 10,
-    marginBottom: 10
-  },
-  deckButton: {
-    backgroundColor: colors.lightGreen,
-    padding: 10,
-    margin: 0,
-    flex: 1
-  },
-  editButton: {
-    width: 50,
-    backgroundColor: colors.grey,
-    justifyContent: 'center',
+  container: {
     alignItems: 'center',
-    alignSelf: 'center',
-    padding: 0,
-    paddingTop: 10,
-    paddingBottom: 10,
-    margin: 0,
-    flex: 0
+    flexDirection: 'column',
+    margin: 10
+  },
+  startQuiz: {
+    backgroundColor: colors.blue
+  },
+  addQuestion: {
+    backgroundColor: colors.grey
   }
-});
+})
 
-export default DeckView
+const mapStateToProps = state => {
+  return {
+    decks: state.decks,
+    counts: state.decks.reduce(
+      (sum, deck) => {
+        sum[deck.id] = deck.questions.length
+        return sum
+      },
+      {}
+    )
+  }
+}
+
+export default connect(mapStateToProps)(DeckView)
+// export default DeckView
