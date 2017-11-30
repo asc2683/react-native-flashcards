@@ -1,60 +1,50 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 
-import DeckModel from '../data/Deck'
 import NormalText from './NormalText'
 import Button from './Button'
 import colors from '../styles/colors'
 
 class DeckView extends Component {
-  static displayName = 'Deck'
-
-  _addQuestions = () => {
-    this.props.add()
-  }
+  static displayName = 'DeckView'
 
   render () {
-    return (
-      <View style={styles.deckGroup}>
-        <Button style={styles.deckButton}>
-          <NormalText>
-            {this.props.deck.name}: {this.props.count} Questions
-          </NormalText>
-        </Button>
+    const { deckName, questionCount } = this.props.navigation.state.params
 
-        <Button style={styles.editButton} onPress={this._addQuestions}>
-          <NormalText>+</NormalText>
-        </Button>
+    return (
+      <View>
+        <View style={styles.container}>
+          <NormalText>{deckName}</NormalText>
+          <Text>{questionCount} Questions</Text>
+        </View>
+
+        <View>
+          <Button style={styles.addQuestion} onPress={this.props.onPress}>
+            <NormalText>Add Question</NormalText>
+          </Button>
+
+          <Button style={styles.startQuiz} onPress={this.props.onPress}>
+            <NormalText>Start Quiz</NormalText>
+          </Button>
+
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  deckGroup: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    padding: 10,
-    marginBottom: 10
-  },
-  deckButton: {
-    backgroundColor: colors.lightGreen,
-    padding: 10,
-    margin: 0,
-    flex: 1
-  },
-  editButton: {
-    width: 50,
-    backgroundColor: colors.grey,
-    justifyContent: 'center',
+  container: {
     alignItems: 'center',
-    alignSelf: 'center',
-    padding: 0,
-    paddingTop: 10,
-    paddingBottom: 10,
-    margin: 0,
-    flex: 0
+    flexDirection: 'column',
+    margin: 15
+  },
+  startQuiz: {
+    backgroundColor: colors.blue
+  },
+  addQuestion: {
+    backgroundColor: colors.grey
   }
-});
+})
 
 export default DeckView

@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 
-import DeckView from './DeckView'
+import Deck from './Deck'
 import DeckCreation from './DeckCreation'
 
 class DeckList extends Component {
@@ -25,18 +25,25 @@ class DeckList extends Component {
     this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
   }
 
+  _openDeck = (deckID, deckName, questionCount) => {
+    this.props.navigation.navigate('DeckView', { deckID: deckID, deckName: deckName, questionCount: questionCount })
+  }
+
   _makeDeckViews () {
     if (!this.props.decks) {
       return null
     }
 
     return this.props.decks.map(deck => {
-      return <DeckView
+      return <Deck
                deck={deck}
                count={this.props.counts[deck.id]}
                key={deck.id}
                add={() => {
                  this._addQuestions(deck.id)
+               }}
+               open={() => {
+                 this._openDeck(deck.id, deck.name, this.props.counts[deck.id])
                }}
                />
     })
