@@ -25,8 +25,8 @@ class DeckList extends Component {
     this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
   }
 
-  _openDeck = (deckID, deckName, questionCount) => {
-    this.props.navigation.navigate('DeckView', { deckID: deckID, deckName: deckName, questionCount: questionCount })
+  _openDeck = (deckID, deckName) => {
+    this.props.navigation.navigate('DeckView', { deckID: deckID, deckName: deckName })
   }
 
   _makeDeckViews () {
@@ -43,7 +43,7 @@ class DeckList extends Component {
                  this._addQuestions(deck.id)
                }}
                open={() => {
-                 this._openDeck(deck.id, deck.name, this.props.counts[deck.id])
+                 this._openDeck(deck.id, deck.name)
                }}
                />
     })

@@ -10,6 +10,7 @@ import { loadData } from './actions'
 import DeckList from './components/DeckList'
 import QuestionCreation from './components/QuestionCreation'
 import DeckView from './components/DeckView'
+import QuestionView from './components/QuestionView'
 
 let store = createStore(
   reducer,
@@ -41,6 +42,10 @@ const Navigator = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.deckName}`
     })
+  },
+  QuestionView: {
+    screen: QuestionView,
+    navigationOptions: headerOptions
   }
 })
 

@@ -14,6 +14,10 @@ class DeckView extends Component {
     this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
   }
 
+  _openQuestion = (deckID, deckName) => {
+    this.props.navigation.navigate('QuestionView', { deckID: deckID, deckName: deckName })
+  }
+
   render () {
     const { deckName, deckID } = this.props.navigation.state.params
 
@@ -29,7 +33,7 @@ class DeckView extends Component {
             <NormalText>Add Question</NormalText>
           </Button>
 
-          <Button style={styles.startQuiz} onPress={this.props.onPress}>
+          <Button style={styles.startQuiz} onPress={this._openQuestion}>
             <NormalText>Start Quiz</NormalText>
           </Button>
 
