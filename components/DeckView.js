@@ -14,8 +14,9 @@ class DeckView extends Component {
     this.props.navigation.navigate('CardCreation', { deckID: deckID })
   }
 
-  _openQuestion = (deckID, deckName) => {
-    this.props.navigation.navigate('CardView', { deckID: deckID, deckName: deckName })
+  _openQuestion = deckID => {
+    deckID = this.props.navigation.state.params.deckID
+    this.props.navigation.navigate('CardView', { deckID: deckID })
   }
 
   render () {
