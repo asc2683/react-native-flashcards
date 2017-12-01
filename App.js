@@ -8,9 +8,9 @@ import { readDecks } from './storage/decks'
 import { loadData } from './actions'
 
 import DeckList from './components/DeckList'
-import QuestionCreation from './components/QuestionCreation'
+import CardCreation from './components/CardCreation'
 import DeckView from './components/DeckView'
-import QuestionView from './components/QuestionView'
+import CardView from './components/CardView'
 
 let store = createStore(
   reducer,
@@ -32,8 +32,8 @@ const Navigator = StackNavigator({
     screen: DeckList,
     navigationOptions: headerOptions
   },
-  QuestionCreation: {
-    screen: QuestionCreation,
+  CardCreation: {
+    screen: CardCreation,
     path: 'createQuestion/:deckID',
     navigationOptions: headerOptions
   },
@@ -43,8 +43,8 @@ const Navigator = StackNavigator({
       title: `${navigation.state.params.deckName}`
     })
   },
-  QuestionView: {
-    screen: QuestionView,
+  CardView: {
+    screen: CardView,
     navigationOptions: headerOptions
   }
 })

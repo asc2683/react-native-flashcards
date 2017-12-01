@@ -16,13 +16,13 @@ class DeckList extends Component {
     let createDeckAction = addDeck(name)
 
     this.props.createDeck(createDeckAction)
-    this.props.navigation.navigate('QuestionCreation', {
+    this.props.navigation.navigate('CardCreation', {
       deckID: createDeckAction.data.id
     })
   }
 
   _addQuestions = deckID => {
-    this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
+    this.props.navigation.navigate('CardCreation', { deckID: deckID })
   }
 
   _openDeck = (deckID, deckName) => {

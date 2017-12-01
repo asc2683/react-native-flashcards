@@ -10,7 +10,7 @@ import NormalText from './NormalText'
 import colors from '../styles/colors'
 import LabeledInput from './LabeledInput'
 
-class QuestionCreation extends Component {
+class CardCreation extends Component {
   static navigationOptions = { title: 'Create Question' }
 
   static initialState = { question: '', answer: '' }
@@ -36,7 +36,7 @@ class QuestionCreation extends Component {
   _createQuestion = () => {
     this.props.createQuestion(this.state.question, this.state.answer, this._deckID())
 
-    this.props.navigation.navigate('QuestionCreation', { deckID: this._deckID() })
+    this.props.navigation.navigate('CardCreation', { deckID: this._deckID() })
   }
 
   _doneCreating = () => {
@@ -94,4 +94,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionCreation)
+export default connect(mapStateToProps, mapDispatchToProps)(CardCreation)
