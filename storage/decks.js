@@ -43,4 +43,4 @@ export const writeDecks = decks => {
 /*
 for development mock data
 */
-// const replaceDate = writeDecks(MockDecks)
+const replaceDate = writeDecks(MockDecks)

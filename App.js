@@ -9,6 +9,7 @@ import { loadData } from './actions'
 
 import DeckList from './components/DeckList'
 import CardCreation from './components/CardCreation'
+import DeckCreation from './components/DeckCreation'
 import DeckView from './components/DeckView'
 import CardView from './components/CardView'
 import { setLocalNotification } from './utils/notifications';
@@ -17,7 +18,7 @@ let store = createStore(
   reducer,
 
   /* redux dev tool chrome */
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 readDecks().then(decks => {
@@ -32,6 +33,10 @@ const Navigator = StackNavigator({
   Home: {
     screen: DeckList,
     navigationOptions: headerOptions
+  },
+  DeckCreation: {
+    screen: DeckCreation,
+    navigation: headerOptions
   },
   CardCreation: {
     screen: CardCreation,
