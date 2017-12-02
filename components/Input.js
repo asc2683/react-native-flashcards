@@ -1,0 +1,60 @@
+import React, { Component } from 'react'
+import { StyleSheet, TextInput, View } from 'react-native'
+
+import colors from '../styles/colors'
+import { fonts } from '../styles/fonts'
+
+class Input extends Component {
+  constructor (props) {
+    super (props)
+
+    this.state = { this: ' ' }
+  }
+
+  _create = () => {
+    this.props.onEntry(this.state.text)
+    this.setState({ text: ' ' })
+  }
+
+  _onSubmit = evt => {
+    this.props.onEntry(evt.nativeEvent.text)
+    if (this.props.clearOnSubmit) {
+      this.setState({ text: ' ' })
+    }
+  }
+
+  _onChange = text => {
+    this.setState({ text: text })
+    if (this.props.onChange) {
+      this.props.onChange(text)
+    }
+  }
+
+  render () {
+    return (
+      <TextInput
+        style={[
+          styles.nameField,
+          styles.wideButton,
+          fonts.normal,
+          this.props.style
+        ]}
+
+        ref='newDeckInput'
+        multiline={false}
+        autoCorrect={false}
+        onChangeText={this._onChange}
+        onSubmitEditing={this._onSubmit}
+      />
+    )
+  }
+}
+
+Input.defaultProps = { clearOnSubmit: true }
+
+const styles = StyleSheet.create({
+  nameField: { backgroundColor: colors.white, height: 60 },
+  wideButton: { justifyContent: 'center', padding: 10, margin: 10 }
+})
+
+export default Input
