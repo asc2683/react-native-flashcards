@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ScrollView } from 'react-native'
 
 import { connect } from 'react-redux'
 // import { addDeck } from '../actions'
@@ -49,37 +49,17 @@ class DeckList extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <View style={styles.top}>
-        </View>
-        <View style={styles.middle}>
-          {this._makeDeckViews()}
-        </View>
-        <View Style={styles.bottom}>
-          <Button style={styles.primary} onPress={this._createDeck}>
-            <NormalText>Create Deck</NormalText>
-          </Button>
-        </View>
-      </View>
+      <ScrollView style={{ flex:1 }}>
+        <Button style={styles.primary} onPress={this._createDeck}>
+          <NormalText>Create Deck</NormalText>
+        </Button>
+        {this._makeDeckViews()}
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1
-  },
-  top: {
-    flex: .10
-  },
-  middle: {
-    flex: .80,
-    padding: 10
-  },
-  bottom: {
-    flex: .10
-  },
   primary: {
     backgroundColor: colors.green
   },
