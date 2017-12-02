@@ -42,12 +42,12 @@ class CardView extends Component {
     this.state.isComplete = true
   }
 
-  _retakeQuiz = () => {
-    this.props.navigation.navigate('DeckView', { deckID: this.props.deck.id, deckName: this.props.deck.name })
+  _navToQuiz = () => {
+    this.props.navigation.navigate('CardView', { deckID: this.props.deck.id })
   }
 
-  _goHome = () => {
-    this.props.navigation.navigate('Home')
+  _navToDeck = () => {
+    this.props.navigation.navigate('DeckView', { deckID: this.props.deck.id, deckName: this.props.deck.name })
   }
 
   render () {
@@ -107,11 +107,11 @@ class CardView extends Component {
 
         {this.state.isComplete &&
           <View style={styles.bottom}>
-            <Button style={styles.retake} onPress={this._retakeQuiz}>
-              <NormalText>Retake</NormalText>
+            <Button style={styles.retest} onPress={this._navToQuiz}>
+              <NormalText>Restart Quiz</NormalText>
             </Button>
-            <Button style={styles.primary} onPress={this._goHome}>
-              <NormalText>Home</NormalText>
+            <Button style={styles.primary} onPress={this._navToDeck}>
+              <NormalText>Back to Deck</NormalText>
             </Button>
           </View>
         }
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   incorrect: {
     backgroundColor: colors.red
   },
-  retake: {
+  retest: {
     backgroundColor: colors.yellow
   }
 })
