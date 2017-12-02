@@ -17,7 +17,7 @@ let store = createStore(
   reducer,
 
   /* redux dev tool chrome */
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 readDecks().then(decks => {

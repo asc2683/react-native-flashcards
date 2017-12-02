@@ -11,7 +11,7 @@ import colors from '../styles/colors'
 import LabeledInput from './LabeledInput'
 
 class CardCreation extends Component {
-  static navigationOptions = { title: 'Create Question' }
+  static navigationOptions = { title: 'Create Card' }
 
   static initialState = { question: '', answer: '' }
 
@@ -60,7 +60,7 @@ class CardCreation extends Component {
         />
 
         <Button style={styles.createButton} onPress={this._createQuestion}>
-          <NormalText>Create Question</NormalText>
+          <NormalText>Create Card</NormalText>
         </Button>
 
         <View style={styles.buttonRow}>

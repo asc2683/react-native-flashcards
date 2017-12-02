@@ -107,7 +107,7 @@ class CardView extends Component {
 
         {this.state.isComplete &&
           <View style={styles.bottom}>
-            <Button style={styles.secondary} onPress={this._retakeQuiz}>
+            <Button style={styles.retake} onPress={this._retakeQuiz}>
               <NormalText>Retake</NormalText>
             </Button>
             <Button style={styles.primary} onPress={this._goHome}>
@@ -159,6 +159,9 @@ const styles = StyleSheet.create({
   },
   incorrect: {
     backgroundColor: colors.red
+  },
+  retake: {
+    backgroundColor: colors.yellow
   }
 })
 
