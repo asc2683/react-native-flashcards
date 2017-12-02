@@ -11,6 +11,7 @@ import DeckList from './components/DeckList'
 import CardCreation from './components/CardCreation'
 import DeckView from './components/DeckView'
 import CardView from './components/CardView'
+import { setLocalNotification } from './utils/notifications';
 
 let store = createStore(
   reducer,
@@ -50,6 +51,9 @@ const Navigator = StackNavigator({
 })
 
 class App extends Component {
+  componentDidMount () {
+    setLocalNotification()
+  }
 
   render () {
     return (
