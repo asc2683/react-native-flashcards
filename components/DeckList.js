@@ -2,24 +2,21 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { connect } from 'react-redux'
-import { addDeck } from '../actions'
+// import { addDeck } from '../actions'
 
 import colors from '../styles/colors'
 import Deck from './Deck'
+import Button from './Button'
 import DeckCreation from './DeckCreation'
+import NormalText from './NormalText'
 
 class DeckList extends Component {
   static displayName = 'DeckList'
 
   static navigationOptions = { title: 'Quiz Decks' }
 
-  _createDeck = name => {
-    let createDeckAction = addDeck(name)
-
-    this.props.createDeck(createDeckAction)
-    this.props.navigation.navigate('CardCreation', {
-      deckID: createDeckAction.data.id
-    })
+  _createDeck = () => {
+    this.props.navigation.navigate('DeckCreation')
   }
 
   _addQuestions = deckID => {
@@ -59,7 +56,9 @@ class DeckList extends Component {
           {this._makeDeckViews()}
         </View>
         <View Style={styles.bottom}>
-          <DeckCreation create={this._createDeck} />
+          <Button style={styles.primary} onPress={this._createDeck}>
+            <NormalText>Create Deck</NormalText>
+          </Button>
         </View>
       </View>
     )
@@ -89,13 +88,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createDeck: deckAction => {
-      dispatch(deckAction)
-    }
-  }
-}
 
 const mapStateToProps = state => {
   return {
@@ -110,4 +102,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeckList)
+export default connect(mapStateToProps)(DeckList)

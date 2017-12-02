@@ -1,30 +1,46 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 
-import { CreateDeckButton, EnterDeck } from './DeckCreationFields'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
+
+import { EnterDeck } from './DeckCreationFields'
 
 class DeckCreation extends Component {
-  constructor (props) {
-    super (props)
+   static displayName = 'DeckCreation'
 
-    this.state = { showingNameFields: false }
-  }
+   static navigationOptions = { title: 'Create Deck' }
 
   _newDeck = name => {
-    this.setState({ showingNameFields: false })
-    this.props.create(name)
-  }
+    let createDeckAction = addDeck(name)
 
-  _showField = () => {
-    this.setState({ showingNameFields: true })
+    this.props.createDeck(createDeckAction)
+    this.props.navigation.navigate('DeckView', {
+      deckID: createDeckAction.data.id, deckName: createDeckAction.data.name
+    })
   }
 
   render () {
-    let contents = this.state.showingNameFields
-      ? <EnterDeck create={this._newDeck} />
-      : <CreateDeckButton onPress={this._showField} />
-    return contents
+    return (
+    <View>
+      <EnterDeck create={this._newDeck} />
+    </View>
+    )
   }
 }
 
-export default DeckCreation
+const mapDispatchToProps = dispatch => {
+  return {
+    createDeck: deckAction => {
+      dispatch(deckAction)
+    }
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    decks: state.decks
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeckCreation)
