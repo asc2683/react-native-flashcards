@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import NormalText from './NormalText'
 import Button from './Button'
 import colors from '../styles/colors'
+import fonts from '../styles/fonts'
 
 class DeckView extends Component {
   static displayName = 'DeckView'
@@ -23,19 +24,22 @@ class DeckView extends Component {
     const { deckName, deckID } = this.props.navigation.state.params
 
     return (
-      <View>
-        <View style={styles.container}>
-          <NormalText>{deckName}</NormalText>
-          <Text>{this.props.counts[deckID]} Questions</Text>
+      <View style={styles.container}>
+        <View style={styles.top}>
         </View>
 
-        <View>
-          <Button style={styles.addQuestion} onPress={this._addQuestions}>
-            <NormalText>Add Question</NormalText>
+        <View style={styles.middle}>
+          <NormalText style={{ textAlign: 'center', fontWeight: 'bold' }}>{deckName}</NormalText>
+          <Text style={{ textAlign: 'center', color: colors.grey }}>{this.props.counts[deckID]} Questions</Text>
+        </View>
+
+        <View style={styles.bottom}>
+          <Button style={styles.secondary} onPress={this._addQuestions}>
+            <NormalText>Add Card</NormalText>
           </Button>
 
-          <Button style={styles.startQuiz} onPress={this._openQuestion}>
-            <NormalText>Start Quiz</NormalText>
+          <Button style={styles.primary} onPress={this._openQuestion}>
+            <NormalText>Start</NormalText>
           </Button>
 
         </View>
@@ -46,15 +50,24 @@ class DeckView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flexDirection: 'column',
-    margin: 10
+    flex: 1
   },
-  startQuiz: {
+  top: {
+    flex: .10
+  },
+  middle: {
+    flex: .60,
+    padding: 10
+  },
+  bottom: {
+    flex: .30
+  },
+  primary: {
+    backgroundColor: colors.green
+  },
+  secondary: {
     backgroundColor: colors.blue
-  },
-  addQuestion: {
-    backgroundColor: colors.grey
   }
 })
 

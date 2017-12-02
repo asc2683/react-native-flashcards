@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 
 import NormalText from './NormalText'
 import Button from './Button'
@@ -20,9 +20,15 @@ class Deck extends Component {
     return (
       <View style={styles.deckGroup}>
         <Button style={styles.deckButton} onPress={this._openDeck}>
-          <NormalText>
-            {this.props.deck.name}: {this.props.count} Questions
+          <NormalText style={{ fontWeight: 'bold' }}>
+            {this.props.deck.name}
           </NormalText>
+          <Text style={{ color: colors.grey }}>
+            {this.props.count}
+            {this.props.count > 1
+              ? `${' Cards '}`
+              : `${' Card '}` }
+          </Text>
         </Button>
 
         <Button style={styles.editButton} onPress={this._addQuestions}>
@@ -38,16 +44,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch',
     padding: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    borderBottomColor: colors.darkGrey,
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   deckButton: {
-    backgroundColor: colors.lightGreen,
-    padding: 10,
+    backgroundColor: 'transparent',
+    padding: 5,
     margin: 0,
     flex: 1
   },
   editButton: {
     width: 50,
+    borderRadius: 25,
     backgroundColor: colors.grey,
     justifyContent: 'center',
     alignItems: 'center',

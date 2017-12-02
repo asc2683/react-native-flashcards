@@ -53,7 +53,7 @@ class Input extends Component {
 Input.defaultProps = { clearOnSubmit: true }
 
 const styles = StyleSheet.create({
-  nameField: { backgroundColor: colors.grey, height: 60 },
+  nameField: { backgroundColor: colors.white, height: 60 },
   wideButton: { justifyContent: 'center', padding: 10, margin: 10 }
 })
 

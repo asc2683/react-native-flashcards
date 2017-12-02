@@ -25,11 +25,12 @@ Button.defaultProps = { disabled: false }
 
 const styles = StyleSheet.create({
   wideButton: {
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
     margin: 10,
-    backgroundColor: colors.green
+    backgroundColor: colors.grey
   }
 })
 

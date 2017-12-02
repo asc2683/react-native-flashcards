@@ -63,7 +63,7 @@ class CardView extends Component {
 
         <View style={styles.top}>
           {!this.state.isComplete &&
-            <Text>
+            <Text style={{ textAlign: 'center' }}>
             {`${this.state.key + 1} out of ${questions.length}`}
             </Text>
           }
@@ -87,6 +87,7 @@ class CardView extends Component {
 
           {this.state.isComplete &&
             <View>
+              <NormalText style={{ textAlign: 'center', fontWeight: 'bold' }}>Score</NormalText>
               <NormalText style={{ textAlign: 'center' }}>{(this.state.score / questions.length) * 100} %</NormalText>
               <Text style={{ textAlign: 'center' }}>{this.state.score} out of {questions.length}</Text>
             </View>
@@ -95,10 +96,10 @@ class CardView extends Component {
 
         {!this.state.isComplete &&
           <View style={styles.bottom}>
-            <Button onPress={this._correct }>
+            <Button style={styles.primary} onPress={this._correct }>
               <NormalText>Correct</NormalText>
             </Button>
-            <Button onPress={this._incorrect }>
+            <Button style={styles.incorrect} onPress={this._incorrect }>
               <NormalText>Incorrect</NormalText>
             </Button>
           </View>
@@ -106,10 +107,10 @@ class CardView extends Component {
 
         {this.state.isComplete &&
           <View style={styles.bottom}>
-            <Button onPress={this._retakeQuiz}>
+            <Button style={styles.secondary} onPress={this._retakeQuiz}>
               <NormalText>Retake</NormalText>
             </Button>
-            <Button onPress={this._goHome}>
+            <Button style={styles.primary} onPress={this._goHome}>
               <NormalText>Home</NormalText>
             </Button>
           </View>
@@ -149,6 +150,15 @@ const styles = StyleSheet.create({
   },
   card: {
     borderWidth: 0
+  },
+  primary: {
+    backgroundColor: colors.green
+  },
+  secondary: {
+    backgroundColor: colors.blue
+  },
+  incorrect: {
+    backgroundColor: colors.red
   }
 })
 
