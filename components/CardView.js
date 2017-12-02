@@ -17,7 +17,8 @@ class CardView extends Component {
 
   state = {
     key: 0,
-    score: 0
+    score: 0,
+    isComplete: false
   }
 
   _correct = () => {
@@ -32,49 +33,87 @@ class CardView extends Component {
   _incorrect = () => {
     this.setState(currentState => {
       return {
-        score: currentState.score -= 1,
-        key: currentState.key -=1
+        key: currentState.key +=1
       }
     })
   }
 
-  render () {
+  _isComplete = () => {
+    this.state.isComplete = true
+  }
 
+  _retakeQuiz = () => {
+    this.props.navigation.navigate('DeckView', { deckID: this.props.deck.id, deckName: this.props.deck.name })
+  }
+
+  _goHome = () => {
+    this.props.navigation.navigate('Home')
+  }
+
+  render () {
     const { questions = [] } = this.props.deck
-    const card = questions[this.state.key]
+    let card = {}
+
+    this.state.key >= questions.length
+      ? this._isComplete()
+      : card = questions[this.state.key]
 
     return (
       <View style={styles.container}>
+
         <View style={styles.top}>
-          <Text>
-          {`${this.state.key + 1} out of ${questions.length}`}
-          </Text>
+          {!this.state.isComplete &&
+            <Text>
+            {`${this.state.key + 1} out of ${questions.length}`}
+            </Text>
+          }
         </View>
 
         <View style={styles.middle}>
-          <FlipCard style={styles.card}>
+          {!this.state.isComplete &&
+            <FlipCard style={styles.card}>
+              <View>
+                <CardFront
+                  question={card.question}
+                />
+              </View>
+              <View>
+                <CardBack
+                  answer={card.answer}
+                />
+              </View>
+            </FlipCard>
+          }
+
+          {this.state.isComplete &&
             <View>
-              <CardFront
-                question={card.question}
-              />
+              <NormalText style={{ textAlign: 'center' }}>{(this.state.score / questions.length) * 100} %</NormalText>
+              <Text style={{ textAlign: 'center' }}>{this.state.score} out of {questions.length}</Text>
             </View>
-            <View>
-              <CardBack
-                answer={card.answer}
-              />
-            </View>
-          </FlipCard>
+          }
         </View>
 
-        <View style={styles.bottom}>
-          <Button onPress={this._correct}>
-            <NormalText>Correct</NormalText>
-          </Button>
+        {!this.state.isComplete &&
+          <View style={styles.bottom}>
+            <Button onPress={this._correct }>
+              <NormalText>Correct</NormalText>
+            </Button>
+            <Button onPress={this._incorrect }>
+              <NormalText>Incorrect</NormalText>
+            </Button>
+          </View>
+        }
 
-          <Button onPress={this._incorrect}>
-            <NormalText>Incorrect</NormalText>
-          </Button>
-        </View>
+        {this.state.isComplete &&
+          <View style={styles.bottom}>
+            <Button onPress={this._retakeQuiz}>
+              <NormalText>Retake</NormalText>
+            </Button>
+            <Button onPress={this._goHome}>
+              <NormalText>Home</NormalText>
+            </Button>
+          </View>
+        }
       </View>
     )
   }

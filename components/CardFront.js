@@ -6,9 +6,7 @@ import NormalText from './NormalText'
 class CardFront extends Component {
 
   render () {
-
     const { question } = this.props
-
 
     return (
       <View>
