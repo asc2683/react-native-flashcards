@@ -11,7 +11,12 @@ class DeckView extends Component {
 
   _addQuestions = deckID => {
     deckID = this.props.navigation.state.params.deckID
-    this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
+    this.props.navigation.navigate('CardCreation', { deckID: deckID })
+  }
+
+  _openQuestion = deckID => {
+    deckID = this.props.navigation.state.params.deckID
+    this.props.navigation.navigate('CardView', { deckID: deckID })
   }
 
   render () {
@@ -29,7 +34,7 @@ class DeckView extends Component {
             <NormalText>Add Question</NormalText>
           </Button>
 
-          <Button style={styles.startQuiz} onPress={this.props.onPress}>
+          <Button style={styles.startQuiz} onPress={this._openQuestion}>
             <NormalText>Start Quiz</NormalText>
           </Button>
 

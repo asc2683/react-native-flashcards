@@ -16,17 +16,17 @@ class DeckList extends Component {
     let createDeckAction = addDeck(name)
 
     this.props.createDeck(createDeckAction)
-    this.props.navigation.navigate('QuestionCreation', {
+    this.props.navigation.navigate('CardCreation', {
       deckID: createDeckAction.data.id
     })
   }
 
   _addQuestions = deckID => {
-    this.props.navigation.navigate('QuestionCreation', { deckID: deckID })
+    this.props.navigation.navigate('CardCreation', { deckID: deckID })
   }
 
-  _openDeck = (deckID, deckName, questionCount) => {
-    this.props.navigation.navigate('DeckView', { deckID: deckID, deckName: deckName, questionCount: questionCount })
+  _openDeck = (deckID, deckName) => {
+    this.props.navigation.navigate('DeckView', { deckID: deckID, deckName: deckName })
   }
 
   _makeDeckViews () {
@@ -43,7 +43,7 @@ class DeckList extends Component {
                  this._addQuestions(deck.id)
                }}
                open={() => {
-                 this._openDeck(deck.id, deck.name, this.props.counts[deck.id])
+                 this._openDeck(deck.id, deck.name)
                }}
                />
     })
