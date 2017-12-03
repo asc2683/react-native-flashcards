@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ScrollView } from 'react-native'
 
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
@@ -53,14 +53,10 @@ class DeckList extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={styles.top}>
-        </View>
-        <View style={styles.middle}>
+        <ScrollView>
           {this._makeDeckViews()}
-        </View>
-        <View Style={styles.bottom}>
-          <DeckCreation create={this._createDeck} />
-        </View>
+        </ScrollView>
+        <DeckCreation create={this._createDeck} />
       </View>
     )
   }
@@ -68,18 +64,9 @@ class DeckList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    flex: 1
-  },
-  top: {
-    flex: .10
-  },
-  middle: {
-    flex: .80,
-    padding: 10
-  },
-  bottom: {
-    flex: .10
+    flex: 1,
+    marginTop: 5,
+    marginBottom: 40
   },
   primary: {
     backgroundColor: colors.green
