@@ -53,10 +53,10 @@ class DeckList extends Component {
   render () {
     return (
       <View style={styles.container}>
+        <DeckCreation create={this._createDeck} />
         <ScrollView>
           {this._makeDeckViews()}
         </ScrollView>
-        <DeckCreation create={this._createDeck} />
       </View>
     )
   }
@@ -65,8 +65,7 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 5,
-    marginBottom: 40
+    marginTop: 5
   },
   primary: {
     backgroundColor: colors.green
