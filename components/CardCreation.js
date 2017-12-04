@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Alert } from 'react-native'
 
 import DeckModel from '../data/Deck'
 import { addQuestion } from '../actions'
@@ -33,8 +33,21 @@ class CardCreation extends Component {
     this.setState({ answer: text })
   }
 
+  _showAlert = () => {
+    Alert.alert(
+      'Alert',
+      'Question field cannot be blank',
+      [
+        { text: 'OK', onPress: () => {} }
+      ],
+      { cancelable: true }
+    )
+  }
+
   _createQuestion = () => {
-    this.props.createQuestion(this.state.question, this.state.answer, this._deckID())
+    this.state == null
+      ? this._showAlert()
+      : this.props.createQuestion(this.state.question, this.state.answer, this._deckID())
 
     this.props.navigation.navigate('CardCreation', { deckID: this._deckID() })
   }
